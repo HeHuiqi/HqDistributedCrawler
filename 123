@@ -1,0 +1,33 @@
+
+//user_hedockerqi
+docker  info
+docker run hello-word
+docker run -it alpine sh
+docker images
+//-d重定向 -p 端口 表示重定向到本机的80端口
+docker run -d -p 80:80  nginx
+
+docker search elasticsearch
+docker run -d -p 9200:9200 nshou/elasticsearch-kibana
+//安装完成自动启动，访问http://localhost:9200/
+docker ps
+//docker kill CONTAINER ID(可通过docker ps查看)
+clear
+
+//elasticsearch
+post or get
+http://localhost:9200/imooc/course/1
+
+get
+http://localhost:9200/imooc/course/_search
+
+http://localhost:9200/imooc/course/_search?q=golang
+
+get  查看结构
+http://localhost:9200/imooc/course/_mapping
+
+//本项目
+http://localhost:9200/dating_profile/zhenai/_search
+http://localhost:9200/dating_profile/zhenai/_search?size=100
+http://localhost:9200/dating_profile/zhenai/_search?q=男 已购房 已购车
+http://localhost:9200/dating_profile/zhenai/_search?q=男 已购房 已购车 Age:(<30)
