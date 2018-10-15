@@ -1,33 +1,35 @@
-package persist
+package client
 
 import (
-	"log"
 	"github.com/olivere/elastic"
-	"context"
+	"log"
 	"reflect"
 	"HqDistributedCrawler/engine"
-	"github.com/pkg/errors"
+	"errors"
 	"encoding/json"
+	"context"
+	"HqDistributedCrawler/distrubite/rpcsupport"
 )
 
-func ItemSaver(index string) (chan engine.Item,error){
-	client,err := elastic.NewClient(
-		//Must turn off sniff in docker
-		elastic.SetSniff(false),
-	)
+func ItemSaver(host string) (chan engine.Item,error){
+
+	client,err := rpcsupport.NewClient(host)
 	if err != nil {
 		return nil,err
 	}
+
 	out := make(chan engine.Item)
 	go func() {
 		itemCount := 0
 		for {
 			item := <- out
-			log.Printf("Item Saver Got Item #%d: %v",itemCount,item)
+			log.Printf("client/is Item Saver Got Item #%d: %v",itemCount,item)
 			itemCount++
-			err := Save(client,index,item)
+			// call RPC to save Item
+			result := ""
+			err = client.Call("ItemSaverService.Save",item,&result)
 			if err != nil {
-				log.Printf("Item Saver: error saving item %v: %v",item,err)
+				log.Printf("client/is Item Saver: error saving item %v: %v",item,err)
 			}
 		}
 	}()

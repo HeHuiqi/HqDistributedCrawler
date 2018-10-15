@@ -2,7 +2,7 @@ package main
 
 import (
 	"net/http"
-	"HqCrawler/web/controller"
+	"HqDistributedCrawler/web/controller"
 )
 
 func main() {

@@ -1,6 +1,6 @@
 package scheduler
 
-import "HqCrawler/engine"
+import "HqDistributedCrawler/engine"
 
 /*
 type SimpleScheduler struct {

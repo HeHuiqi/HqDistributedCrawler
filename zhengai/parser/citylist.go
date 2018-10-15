@@ -1,7 +1,7 @@
 package parser
 
 import (
-	"HqCrawler/engine"
+	"HqDistributedCrawler/engine"
 	"regexp"
 )
 

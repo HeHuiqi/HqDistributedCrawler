@@ -1,7 +1,7 @@
 package engine
 
 import (
-	"HqCrawler/hqfetcher"
+	"HqDistributedCrawler/hqfetcher"
 	"log"
 )
 

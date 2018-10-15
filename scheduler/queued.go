@@ -1,7 +1,7 @@
 package scheduler
 
 import (
-	"HqCrawler/engine"
+	"HqDistributedCrawler/engine"
 )
 
 type QueuedScheduler struct {

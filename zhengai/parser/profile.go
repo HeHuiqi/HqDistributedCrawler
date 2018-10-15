@@ -1,10 +1,10 @@
 package parser
 
 import (
-	"HqCrawler/engine"
+	"HqDistributedCrawler/engine"
 	"regexp"
 	"strconv"
-	"HqCrawler/model"
+	"HqDistributedCrawler/model"
 )
 
 const profileRe = `<a href="(http://album.zhenai.com/u/[0-9]+)"[^>]*>([^<]+)</a>`

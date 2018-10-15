@@ -2,11 +2,11 @@ package persist
 
 import (
 	"testing"
-	"HqCrawler/model"
+	"HqDistributedCrawler/model"
 	"github.com/olivere/elastic"
 	"context"
 	"encoding/json"
-	"HqCrawler/engine"
+	"HqDistributedCrawler/engine"
 )
 
 func TestItemSaver(t *testing.T) {
@@ -41,7 +41,7 @@ func TestItemSaver(t *testing.T) {
 
 	//save item
 	const index  = "dating_test"
-	err = save(client,index,expected)
+	err = Save(client,index,expected)
 	if err !=nil {
 		panic(err)
 	}

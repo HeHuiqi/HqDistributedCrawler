@@ -3,7 +3,7 @@ package view
 import (
 	"html/template"
 	"io"
-	"HqCrawler/web/model"
+	"HqDistributedCrawler/web/model"
 )
 
 type SearchResultView struct {

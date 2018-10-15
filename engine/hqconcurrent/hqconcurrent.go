@@ -2,7 +2,7 @@ package hqconcurrent
 
 import (
 	"log"
-	"HqCrawler/engine"
+	"HqDistributedCrawler/engine"
 )
 
 type ConcurrentEngine struct {

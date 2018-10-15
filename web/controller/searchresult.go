@@ -1,15 +1,15 @@
 package controller
 
 import (
-	"HqCrawler/web/view"
+	"HqDistributedCrawler/web/view"
 	"github.com/olivere/elastic"
 	"net/http"
 	"strings"
 	"strconv"
-	"HqCrawler/web/model"
+	"HqDistributedCrawler/web/model"
 	"context"
 	"reflect"
-	"HqCrawler/engine"
+	"HqDistributedCrawler/engine"
 	"regexp"
 	"fmt"
 )
