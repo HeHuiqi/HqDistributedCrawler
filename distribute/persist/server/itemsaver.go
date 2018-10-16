@@ -1,14 +1,17 @@
 package main
 
 import (
-	"HqDistributedCrawler/distrubite/rpcsupport"
-	"HqDistributedCrawler/distrubite/persist"
+	"HqDistributedCrawler/distribute/rpcsupport"
+	"HqDistributedCrawler/distribute/persist"
 	"github.com/olivere/elastic"
+	"fmt"
+	"HqDistributedCrawler/distribute/config"
 )
 
+//存储server
 func main() {
 
-	serveRpc(":1234","dating_profile")
+	serveRpc(fmt.Sprintf(":%d",config.ItemSaverPort),config.ElasticIndex)
 }
 
 func serveRpc(host,index string) error {

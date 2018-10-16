@@ -44,8 +44,8 @@ func Save(client *elastic.Client,index string,item engine.Item) error  {
 		return errors.New("Must supply Type")
 	}
 
-	//测试先不存储
-	return nil
+	////测试先不存储
+	//return nil
 
 	itemJsonStr,_ := json.Marshal(item)
 	//fmt.Println("Item",string(itemJsonStr))

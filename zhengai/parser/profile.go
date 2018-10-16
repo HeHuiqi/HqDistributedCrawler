@@ -5,6 +5,7 @@ import (
 	"regexp"
 	"strconv"
 	"HqDistributedCrawler/model"
+	"fmt"
 )
 
 const profileRe = `<a href="(http://album.zhenai.com/u/[0-9]+)"[^>]*>([^<]+)</a>`
@@ -19,7 +20,6 @@ var hukouRe = regexp.MustCompile(`<td><span class="label">籍贯：</span>([^<]+
 var xinzuoRe = regexp.MustCompile(`<td><span class="label">星座：</span>([^<]+)</td>`)
 var educationRe = regexp.MustCompile(`<td><span class="label">学历：</span>([^<]+)</td>`)
 var occupationRe  = regexp.MustCompile(`<td><span class="label">职业： </span>([^<]+)</td>`)
-//var guessRe = regexp.MustCompile(``)
 var idUrlRe = regexp.MustCompile(`http://album.zhenai.com/u/([\d]+)`)
 func ParserProfile(contents []byte,name string,url string) engine.ParserResult  {
 
@@ -52,6 +52,8 @@ func ParserProfile(contents []byte,name string,url string) engine.ParserResult  
 
 	profile.Occupation = extractString(contents,occupationRe)
 
+	fmt.Println("ppppppppp",profile)
+
 	result := engine.ParserResult{
 		Items:[]engine.Item{
 			{
@@ -65,13 +67,14 @@ func ParserProfile(contents []byte,name string,url string) engine.ParserResult  
 
 
 	/*
+	var guessRe = regexp.MustCompile(``)
 	matchs := guessRe.FindAllSubmatchIndex(contents,-1)
 	for _,m := range matchs {
 		url := string(m[1])
 		name := string(m[2])
 		result.Requests = append(result.Requests,engine.Request{
 			Url:url,
-			ParserFunc: ProfileParser(name),
+			Parser: NewProfileParser(config.ParserProfile),
 		})
 	}
 	*/
@@ -91,8 +94,25 @@ func extractString(contents []byte,regex *regexp.Regexp) string  {
 	return ""
 }
 
-func ProfileParser(name string) engine.ParserFunc  {
-	return func(c []byte,url string) engine.ParserResult {
-		return ParserProfile(c,name,url)
-	}
+type ProfileParser struct {
+	UserName string
 }
+
+func (p *ProfileParser) Parse(contents []byte, url string) engine.ParserResult {
+
+	return ParserProfile(contents,url,p.UserName)
+}
+
+func (p *ProfileParser) Serialize() (name string, args interface{}) {
+	return "ParserProfile",p.UserName
+}
+
+func NewProfileParser(name string) *ProfileParser  {
+	return &ProfileParser{UserName:name}
+}
+
+//func ProfileParser(name string) engine.ParserFunc  {
+//	return func(c []byte,url string) engine.ParserResult {
+//		return ParserProfile(c,name,url)
+//	}
+//}

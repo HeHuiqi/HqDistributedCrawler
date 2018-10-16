@@ -3,6 +3,7 @@ package parser
 import (
 	"HqDistributedCrawler/engine"
 	"regexp"
+	"HqDistributedCrawler/distribute/config"
 )
 var  (
 	profile1Re = regexp.MustCompile(`<a href="(http://album.zhenai.com/u/[0-9]+)"[^>]*>([^<]+)</a>`)
@@ -16,6 +17,8 @@ func ParserCity(contents []byte,_ string) engine.ParserResult  {
 	result := engine.ParserResult{}
 	for _,m := range matchs{
 
+		/*
+		//这里就不保存用户链接解析的数据了
 		url := string(m[1])
 		name := string(m[2])
 		item := engine.Item{
@@ -26,10 +29,10 @@ func ParserCity(contents []byte,_ string) engine.ParserResult  {
 
 		}
 		result.Items = append(result.Items,item)
-
+		*/
 		result.Requests = append(result.Requests,engine.Request{
 			Url:string(m[1]),
-			ParserFunc: ProfileParser(name),
+			Parser: NewProfileParser(string(m[2])),
 		})
 	}
 
@@ -37,7 +40,7 @@ func ParserCity(contents []byte,_ string) engine.ParserResult  {
 	for _,m := range matchs {
 		result.Requests = append(result.Requests,engine.Request{
 			Url:string(m[1]),
-			ParserFunc: ParserCity,
+			Parser: engine.NewFuncParser(ParserCity,config.ParserCity),
 		})
 	}
 

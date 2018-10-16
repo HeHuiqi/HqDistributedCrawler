@@ -8,7 +8,8 @@ import (
 	"errors"
 	"encoding/json"
 	"context"
-	"HqDistributedCrawler/distrubite/rpcsupport"
+	"HqDistributedCrawler/distribute/rpcsupport"
+	"HqDistributedCrawler/distribute/config"
 )
 
 func ItemSaver(host string) (chan engine.Item,error){
@@ -23,13 +24,13 @@ func ItemSaver(host string) (chan engine.Item,error){
 		itemCount := 0
 		for {
 			item := <- out
-			log.Printf("client/is Item Saver Got Item #%d: %v",itemCount,item)
+			log.Printf("client/isv Item Saver Got Item #%d: %v",itemCount,item)
 			itemCount++
 			// call RPC to save Item
 			result := ""
-			err = client.Call("ItemSaverService.Save",item,&result)
+			err = client.Call(config.ItemSaverRpc,item,&result)
 			if err != nil {
-				log.Printf("client/is Item Saver: error saving item %v: %v",item,err)
+				log.Printf("client/isv Item Saver:  saving item %v; error:%v",item,err)
 			}
 		}
 	}()

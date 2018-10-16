@@ -3,8 +3,8 @@ package persist
 import (
 	"HqDistributedCrawler/engine"
 	"github.com/olivere/elastic"
-	"HqDistributedCrawler/persist"
 	"log"
+	"HqDistributedCrawler/persist"
 )
 
 type ItemSaverService struct {

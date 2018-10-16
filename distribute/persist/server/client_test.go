@@ -2,18 +2,20 @@ package main
 
 import (
 	"testing"
-	"HqDistributedCrawler/distrubite/rpcsupport"
+	"HqDistributedCrawler/distribute/rpcsupport"
 	"HqDistributedCrawler/model"
 	"HqDistributedCrawler/engine"
 	"fmt"
 	"time"
+	"HqDistributedCrawler/distribute/config"
 )
 
 func TestItemSaver(t *testing.T)  {
-	go serveRpc(":1234","test")
+	const host  = ":1234"
+	go serveRpc(host,"test")
 	time.Sleep(time.Second)
 
-	client,err := rpcsupport.NewClient(":1234")
+	client,err := rpcsupport.NewClient(host)
 	if err != nil {
 		panic(err)
 	}
@@ -39,7 +41,7 @@ func TestItemSaver(t *testing.T)  {
 		},
 	}
 	result := ""
-	err = client.Call("ItemSaverService.Save",item,&result)
+	err = client.Call(config.ItemSaverRpc,item,&result)
 	if err != nil || result != "ok"{
 		t.Errorf("result:%v; err: %v",result,err)
 	}
