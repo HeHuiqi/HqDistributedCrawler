@@ -16,6 +16,8 @@ var sexRe  = regexp.MustCompile(`<td><span class="label">性别：</span><span f
 var HeightRe = regexp.MustCompile(`<td><span class="label">身高：</span>([\d]+)CM</td>`)
 var incomeRe  = regexp.MustCompile(`<td><span class="label">月收入：</span>([^<]+)</td>`)
 var carRe  = regexp.MustCompile(`<td><span class="label">是否购车：</span>([^<]+)</td>`)
+var houseRe  = regexp.MustCompile(`<td><span class="label">住房条件：</span>([^<]+)</td>`)
+
 var hukouRe = regexp.MustCompile(`<td><span class="label">籍贯：</span>([^<]+)</td>`)
 var xinzuoRe = regexp.MustCompile(`<td><span class="label">星座：</span>([^<]+)</td>`)
 var educationRe = regexp.MustCompile(`<td><span class="label">学历：</span>([^<]+)</td>`)
@@ -45,6 +47,7 @@ func ParserProfile(contents []byte,name string,url string) engine.ParserResult  
 	profile.Income = extractString(contents,incomeRe)
 
 	profile.Car = extractString(contents,carRe)
+	profile.House = extractString(contents,houseRe)
 
 	profile.Hukou = extractString(contents,hukouRe)
 
