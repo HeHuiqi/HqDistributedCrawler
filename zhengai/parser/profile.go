@@ -5,7 +5,6 @@ import (
 	"regexp"
 	"strconv"
 	"HqDistributedCrawler/model"
-	"fmt"
 )
 
 const profileRe = `<a href="(http://album.zhenai.com/u/[0-9]+)"[^>]*>([^<]+)</a>`
@@ -55,8 +54,6 @@ func ParserProfile(contents []byte,name string,url string) engine.ParserResult  
 
 	profile.Occupation = extractString(contents,occupationRe)
 
-	fmt.Println("ppppppppp",profile)
-
 	result := engine.ParserResult{
 		Items:[]engine.Item{
 			{
@@ -103,7 +100,7 @@ type ProfileParser struct {
 
 func (p *ProfileParser) Parse(contents []byte, url string) engine.ParserResult {
 
-	return ParserProfile(contents,url,p.UserName)
+	return ParserProfile(contents,p.UserName,url)
 }
 
 func (p *ProfileParser) Serialize() (name string, args interface{}) {

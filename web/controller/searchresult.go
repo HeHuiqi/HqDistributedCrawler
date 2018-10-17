@@ -76,7 +76,6 @@ func (h SearchResultHandler)getSearchResult(q string,from int) (model.SearchResu
 	result.Items = resp.Each(reflect.TypeOf(engine.Item{}))
 	result.PrevFrom = result.Start - len(result.Items)
 	result.NextFrom = result.Start + len(result.Items)
-	fmt.Println("result ==",result.Items[0])
 
 	fmt.Println("result ==",result.Items)
 	return result,nil
