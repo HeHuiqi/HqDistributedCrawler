@@ -1,6 +1,6 @@
 # HqDistributedCrawler
 
-分布式爬出开发练习
+分布式爬虫开发练习
 
 ## 运行说明
 
