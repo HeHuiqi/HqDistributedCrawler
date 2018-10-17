@@ -14,8 +14,8 @@ var marriageRe  = regexp.MustCompile(`<td><span class="label">婚况：</span>([
 var sexRe  = regexp.MustCompile(`<td><span class="label">性别：</span><span field="">([^<]+)</span></td>`)
 var HeightRe = regexp.MustCompile(`<td><span class="label">身高：</span>([\d]+)CM</td>`)
 var incomeRe  = regexp.MustCompile(`<td><span class="label">月收入：</span>([^<]+)</td>`)
-var carRe  = regexp.MustCompile(`<td><span class="label">是否购车：</span>([^<]+)</td>`)
-var houseRe  = regexp.MustCompile(`<td><span class="label">住房条件：</span>([^<]+)</td>`)
+var carRe  = regexp.MustCompile(`<td><span class="label">是否购车：</span><span field="">([^<]+)</span></td>`)
+var houseRe  = regexp.MustCompile(`<td><span class="label">住房条件：</span><span field="">([^<]+)</span></td>`)
 
 var hukouRe = regexp.MustCompile(`<td><span class="label">籍贯：</span>([^<]+)</td>`)
 var xinzuoRe = regexp.MustCompile(`<td><span class="label">星座：</span>([^<]+)</td>`)

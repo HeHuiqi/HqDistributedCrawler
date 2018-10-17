@@ -11,13 +11,14 @@ import (
 	"golang.org/x/text/encoding/unicode"
 	"log"
 	"time"
+	"HqDistributedCrawler/distribute/config"
 )
-var rateLimiter  = time.Tick(10*time.Millisecond)
+var rateLimiter  = time.Tick(10*time.Second/config.Qps)
 func HqFetch(url string) ([]byte,error)  {
 
 	//限速执行
 	<-rateLimiter
-
+	log.Printf("Fetching url %s",url)
 	req,_:=http.NewRequest(http.MethodGet,url,nil)
 	req.Header.Add("User-Agent","Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1")
 	//resp,err :=http.DefaultClient.Do(req)
