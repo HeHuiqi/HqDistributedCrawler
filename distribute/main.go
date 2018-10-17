@@ -21,7 +21,7 @@ var (
 
 )
 /*
-注意这里的host要和itemsaver的host以及所有worker的端口保持一致
+ 注意这里的host要和itemsaver的host以及所有worker的端口保持一致
  go run main.go --itemsaver_host=":1234" --worker_hosts=":9000,:9001"
 */
 //分布式版

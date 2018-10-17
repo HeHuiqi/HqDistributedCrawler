@@ -9,10 +9,10 @@ docker run -d -p 80:80  nginx
 
 docker search elasticsearch
 docker run -d -p 9200:9200 nshou/elasticsearch-kibana
+//-d重定向 -p 端口 表示重定向到本机的80端口
 //安装完成自动启动，访问http://localhost:9200/
 docker ps
 //docker kill CONTAINER ID(可通过docker ps查看)
-clear
 
 //elasticsearch
 post or get
