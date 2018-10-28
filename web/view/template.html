@@ -55,6 +55,8 @@
                 <td>婚否</td>
                 <td>职业</td>
                 <td>星座</td>
+                <td>是否购车</td>
+                <td>是否购房</td>
                 <td>户籍</td>
             </tr>
             </thead>
@@ -71,6 +73,8 @@
                 <td>{{.Marriage}}</td>
                 <td>{{.Occupation}}</td>
                 <td>{{.Xinzuo}}</td>
+                <td>{{.House}}</td>
+                <td>{{.Car}}</td>
                 <td>{{.Hukou}}</td>
             {{end}}
             </tr>
@@ -82,9 +86,9 @@
         </table>
         <div align="middle">
         {{if ge .PrevFrom 0 }}
-            <a href="search?q={{.Query}}&from={{.PrevFrom}}">上一页</a>
+            <a href="search?q={{.Query}}&from={{.PrevFrom}}" arget="view_window">上一页</a>
         {{end}}
-            <a href="search?q={{.Query}}&from={{.NextFrom}}">下一页</a>
+            <a href="search?q={{.Query}}&from={{.NextFrom}}" arget="view_window">下一页</a>
 
         </div>
     </div>

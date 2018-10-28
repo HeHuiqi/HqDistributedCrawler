@@ -6,12 +6,22 @@ import (
 	"github.com/olivere/elastic"
 	"fmt"
 	"HqDistributedCrawler/distribute/config"
+	"flag"
 )
 
-//存储server
+var port  = flag.Int("port",0,
+	"the port for me to listen on")
+//开启saver
+//go run itemsaver.go --port=1234
 func main() {
 
-	serveRpc(fmt.Sprintf(":%d",config.ItemSaverPort),config.ElasticIndex)
+	flag.Parse()
+	if *port == 0{
+		fmt.Println("must sepcify a port")
+		return
+	}
+
+	serveRpc(fmt.Sprintf(":%d",*port),config.ElasticIndex)
 }
 
 func serveRpc(host,index string) error {
