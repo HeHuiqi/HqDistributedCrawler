@@ -31,3 +31,5 @@ http://localhost:9200/dating_profile/zhenai/_search
 http://localhost:9200/dating_profile/zhenai/_search?size=100
 http://localhost:9200/dating_profile/zhenai/_search?q=男 已购房 已购车
 http://localhost:9200/dating_profile/zhenai/_search?q=男 已购房 已购车 Age:(<30)
+//注意数据结构
+http://localhost:9200/dating_profile/zhenai/_search?q=Payload.Age:(<20)
